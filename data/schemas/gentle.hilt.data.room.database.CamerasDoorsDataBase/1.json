@@ -1,0 +1,108 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "0a86b439db23e738c2efc7823122e28a",
+    "entities": [
+      {
+        "tableName": "doors",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`favorites` INTEGER NOT NULL, `id` INTEGER NOT NULL, `name` TEXT NOT NULL, `room` TEXT, `snapshot` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "favorites",
+            "columnName": "favorites",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "room",
+            "columnName": "room",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "snapshot",
+            "columnName": "snapshot",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "cameras",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`favorites` INTEGER NOT NULL, `id` INTEGER NOT NULL, `name` TEXT NOT NULL, `rec` INTEGER NOT NULL, `room` TEXT, `snapshot` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "favorites",
+            "columnName": "favorites",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rec",
+            "columnName": "rec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "room",
+            "columnName": "room",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "snapshot",
+            "columnName": "snapshot",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0a86b439db23e738c2efc7823122e28a')"
+    ]
+  }
+}
