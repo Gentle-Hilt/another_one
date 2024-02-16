@@ -27,7 +27,6 @@ import gentle.hilt.data.screens_logic.catalog_screen.remember.rememberFilteringC
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.component.KoinComponent
 
-
 class CatalogScreen : Screen, KoinComponent {
 
     override val key: ScreenKey = uniqueScreenKey

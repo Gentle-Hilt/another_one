@@ -5,11 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import gentle.hilt.data.room.user.UserEntity
-import gentle.hilt.data.room.user.UserRepository
+import gentle.hilt.data.room.user.interactions.InsertUserIntoDb
 import timber.log.Timber
 
 class LoginScreenVM(
-    private val userRepository: UserRepository
+    private val insertUserIntoDb: InsertUserIntoDb,
 ) : ViewModel() {
     var isUsernameValid by mutableStateOf(false)
     var usernameState by mutableStateOf("")
@@ -50,7 +50,7 @@ class LoginScreenVM(
                 surname = surnameState,
                 phoneNumber = "+7$phoneState"
             )
-            userRepository.insertUser(user)
+            insertUserIntoDb.insertUser(user)
         } else {
             Timber.d("error login")
         }

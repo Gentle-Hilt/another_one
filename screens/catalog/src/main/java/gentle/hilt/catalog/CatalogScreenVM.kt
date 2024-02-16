@@ -3,7 +3,7 @@ package gentle.hilt.catalog
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import gentle.hilt.data.room.catalog.CatalogItemEntity
-import gentle.hilt.data.room.catalog.CatalogRepository
+import gentle.hilt.data.room.catalog.interactions.GetCatalogListFromDb
 import gentle.hilt.data.room.mapGoodsToCatalogItemEntity
 import gentle.hilt.network.NetworkRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,8 +13,8 @@ import timber.log.Timber
 
 
 class CatalogScreenVM (
-    private val catalogRepository: CatalogRepository,
     private val networkRepository: NetworkRepository,
+    private val getCatalogListFromDb: GetCatalogListFromDb,
 ) : ViewModel() {
 
     private val _catalogState = MutableStateFlow<List<CatalogItemEntity?>>(emptyList())
@@ -30,7 +30,7 @@ class CatalogScreenVM (
                 Timber.d("updating catalog state")
                 val updatedCatalog = mapGoodsToCatalogItemEntity(goods)
 
-                val catalogFromDb = catalogRepository.getCatalogListFromDb()
+                val catalogFromDb = getCatalogListFromDb.getCatalogList()
                 val updatedCatalogWithFavorites = updatedCatalog.map { item ->
                     val favoriteItem = catalogFromDb.find { it?.id == item.id }
                     item.copy(favorite = favoriteItem?.favorite ?: false)

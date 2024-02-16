@@ -24,6 +24,6 @@ interface CatalogDao {
     fun observerCatalogEntityIsFavorite(itemId: String): Flow<Boolean>
 
     @Query("SELECT * FROM catalog_item")
-    fun observeFavorite(): Flow<List<CatalogItemEntity?>>
+    fun observeFavorites(): Flow<List<CatalogItemEntity?>>
 
 }
